@@ -1,9 +1,15 @@
+
 //
 // Created by Achyutan Srinivasan on 10/20/24.
 
 // HW1.cpp
 #include "Q2.h"
 #include <iostream>
+
+#include "Plane.h"
+#include <string>
+
+
 
 int main() {
     // Initialize the flight distances
@@ -30,5 +36,38 @@ int main() {
         std::cout << "Route not found." << std::endl;
     }
 
+
+
+// parts 3-5
+    std::string from, to;
+
+
+
+    // Create a Plane object with inputs
+
+    Plane plane(from, to);
+    //Set the velocity
+    plane.setVel(500); // Velo
+
+    //Simulate plane's operation
+    double dt = 10; // Time step
+    for (int i = 0; i < 1500; ++i) {
+        plane.operate(dt);
+        std::cout << "Position: " << plane.getPos() << ", At SCE: " << plane.isatSCE() << std::endl;
+
+    }
+
+
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
