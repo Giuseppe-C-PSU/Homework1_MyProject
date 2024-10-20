@@ -23,7 +23,7 @@ return name;
 }
 
 int main() {
-    Pilot* p = new Pilot("John Doe");
+    Pilot* p = new Pilot("Alpha");
     std::cout << "Pilot's name through getter: " << p->getName() << "\n";
 
     delete p;  
