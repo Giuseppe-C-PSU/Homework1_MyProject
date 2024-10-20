@@ -1,0 +1,3 @@
+D:/Coding Stuff/424HW/Homework1_MyProject/out/build/x64-Debug/CMakeFiles/Homework1_MyProject.dir
+D:/Coding Stuff/424HW/Homework1_MyProject/out/build/x64-Debug/CMakeFiles/edit_cache.dir
+D:/Coding Stuff/424HW/Homework1_MyProject/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir
