@@ -9,9 +9,18 @@ int main() {
     // Initialize the flight distances
     FlightDistances();
 
+// Display supported city codes
+    std::cout << "Supported City Codes are SCE, PHL, ORD, and EWR." << std::endl;
+
     // Define the Departure and Arrival
-    std::string From = "SCE";
-    std::string To = "ORD";
+    std::string From;
+    std::string To;
+
+    // Get user input for Departure and Arrival
+    std::cout << "Enter the departure city code: ";
+    std::cin >> From;
+    std::cout << "Enter the arrival city code: ";
+    std::cin >> To;
 
     // Access the flight distance between the cities
     int distance = getFlightDistance(From, To);
