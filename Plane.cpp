@@ -1,18 +1,17 @@
 // Plane.cpp
+#include "Q2.h"
 #include "Plane.h"
 #include <iostream>
 
 // Constructor
-Plane::Plane(const std::string& from, const std::string& to)
-	: pos(0), vel(0), distance(0), at_SCE(true), origin(from),
-	destination(to) {
+Plane::Plane(const std::string& From, const std::string& To)
+	: pos(0), vel(0), distance(0), at_SCE(true), origin(From),
+	destination(To) {
 	// Initialize flight distances
-	flightdistances[{"SCE", "PHL"}] = 160;
-	flightdistances[{"SCE", "ORD"}] = 640;
-	flightdistances[{"SCE", "EWR"}] = 220;
+	FlightDistances();
 
 	// Set the distance based on the origin and destination
-	distance = flightdistances[{from, to}];
+	distance = flightDistances[{From, To}];
 	std::cout << "Plane Created at " << this << std::endl;
 }
 
