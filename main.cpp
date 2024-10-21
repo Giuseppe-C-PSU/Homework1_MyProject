@@ -9,9 +9,24 @@
 #include "Plane.h"
 #include <string>
 
+#include "q1.h"
 
 
 int main() {
+    {// Question 1
+        int allowed = question1();
+        if (allowed){
+            std::cout << "Plane is safe" << std::endl;
+        }else{
+            std::cout << "Plane is not safe" << std::endl;
+        }
+
+    }
+    
+    
+    
+
+
     // Initialize the flight distances
     FlightDistances();
 

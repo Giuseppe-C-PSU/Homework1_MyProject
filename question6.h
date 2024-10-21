@@ -1,5 +1,9 @@
+#ifndef QUESTION6_H
+#define QUESTION6_H
+
 #include <iostream>
 #include <string>
+#include "Plane.h"
 
 class Plane {};
 
@@ -31,4 +35,4 @@ int main() {
 }
   };
 
-
+#endif
