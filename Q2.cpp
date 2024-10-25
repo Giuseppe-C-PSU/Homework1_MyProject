@@ -19,6 +19,6 @@ int getFlightDistance(const std::string& To, const std::string& From) {
     } else if (flightDistances.find(reverseRoute) != flightDistances.end()) {
         return flightDistances[reverseRoute];
     } else {
-        return -'Not Found'; // Indicates that the route was not found
+        return -1; // Indicates that the route was not found
     }
 }

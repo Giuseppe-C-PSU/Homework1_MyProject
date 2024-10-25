@@ -70,7 +70,7 @@ int main() {
 
     // Access the flight distance between the cities
     int distance = getFlightDistance(To, From);
-    if (distance != 'Not Found') { // as long as a route exists
+    if (distance != -1) { // as long as a route exists
         std::cout << "Distance between " << From << " and " << To << " is " << distance << " miles." << std::endl;
     } else {
         std::cout << "Route not found." << std::endl;
