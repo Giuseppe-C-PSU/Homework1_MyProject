@@ -38,13 +38,13 @@ bool question1() {
     cin >> numSeatsFront;
 
 
-    vector<int> seatsFrontWeights;
+    vector<double> seatsFrontWeights;
     if (numSeatsFront > 0){
         cout << "Weight of each front seat occupant (pounds)" << endl;
 
         for (int i = 0; i < numSeatsFront; i++) {
             cout << "Weight of person " << to_string(i + 1) << ": ";
-            int value;
+            double value;
             cin >> value;
             seatsFrontWeights.push_back(value);
         }
@@ -60,13 +60,13 @@ bool question1() {
     int numBackSeats;
     cin >> numBackSeats;
 
-    vector <int> seatsBackWeights;
+    vector <double> seatsBackWeights;
     if (numBackSeats > 0){
         cout << "Weight of each back seater" << endl;
 
         for (int i = 0; i < numBackSeats; i++){
             cout << "Weight of person " << to_string(i+1) << ": ";
-            int value;
+            double value;
             cin >> value;
             seatsBackWeights.push_back(value);
         }
