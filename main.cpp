@@ -1,6 +1,4 @@
 
-//
-// Created by Achyutan Srinivasan on 10/20/24.
 
 // HW1.cpp
 #include "Q2.h"
@@ -44,7 +42,7 @@ int main() {
     std::cin >> To;
 
     // Access the flight distance between the cities
-    int distance = getFlightDistance(From, To);
+    int distance = getFlightDistance(To, From);
     if (distance != 'Not Found') { // as long as a route exists
         std::cout << "Distance between " << From << " and " << To << " is " << distance << " miles." << std::endl;
     } else {
@@ -54,24 +52,20 @@ int main() {
 
 
 // parts 3-5
-    std::string from, to;
-
-
 
     // Create a Plane object with inputs
 
-    Plane plane(from, to);
+    Plane plane(From, To);
     //Set the velocity
     plane.setVel(500); // Velo
 
     //Simulate plane's operation
     double dt = 10; // Time step
-    for (int i = 0; i < 1500; ++i) {
+    for (int i = 0; i < 1500; i++) {
         plane.operate(dt);
-        std::cout << "Position: " << plane.getPos() << ", At SCE: " << plane.isatSCE() << std::endl;
+        std::cout << "Time: " << i*dt << " Seconds || " << "Position: " << plane.getPos() << " Miles " << std::endl;
 
     }
-
 
     return 0;
 }

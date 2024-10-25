@@ -3,8 +3,24 @@
 #include <vector>
 #include <string>
 #include <numeric>
+#include <chrono>
+#include <thread>
 
 using namespace std;
+// this code still doesn't work, fuel calculation off for readjustment
+double totWeight(double empty, double frontS, double backS, double bag, double fuelG, double fuel){
+    double totWeight = empty + frontS + backS + bag + (fuelG * fuel);
+    return totWeight;
+}
+double totMom(double frontS, double momFrontS, double backS, double momBackS, double fuel, double momFuelL, double fuelG, double bag, double bagMom, double momWeightE){
+    double momTot = frontS * momFrontS + momWeightE + backS * momBackS + fuel*fuelG*momFuelL + bag * bagMom;
+    return momTot;
+}
+
+double CG(double momTot, double weightTot){
+    double COG = momTot/weightTot;
+    return COG;
+}
 
 bool question1() {
     cout << "Please insert the following parameters" << endl;
@@ -89,17 +105,20 @@ bool question1() {
     backseats = accumulate(seatsBackWeights.begin(),seatsBackWeights.end(), 0.0);
 
     // Total weight for the entire plane using accumulate because vectors are weird:
-    int weightTot =  frontseats + backseats + bagWeight + (fulGal * fuel) + weightE;
+    double weightTot = totWeight(weightE,frontseats,backseats,bagWeight,fulGal,fuel);
     
     // Total mom arm for the entire plane:
-    int momTot = frontseats * momFrontSeatsL + momWeightEL + backseats * momRearSeatsL + fuel*momFuelL*fulGal + bagWeight*momBagL;
+    double momTot = totMom(frontseats, momFrontSeatsL, backseats, momRearSeatsL, fuel, momFuelL, fulGal, bagWeight, momBagL, momWeightEL);
 
-    double COG = momTot/weightTot;
+
+    double COG = CG(momTot,weightTot);
 
     cout << "Weight for plane is: " << to_string(weightTot) << " Pounds" << endl;
     cout << "COG for this plane is: " << to_string(COG) << " inches from datum" << endl;
 
     bool allowed;
+
+    this_thread::sleep_for(chrono::seconds(2));
 
     if (weightTot < 2950 && (COG < 84.7 && COG > 82.1)){
         cout << "The plane is allowed" << endl;
@@ -110,4 +129,47 @@ bool question1() {
     }
 
     return allowed;
-}   
+}
+
+//     if (allowed){
+//         return allowed;
+//     } else {
+//         while (!allowed) {
+//             if (weightTot > 2950) {
+//                 cout << "Too much weight, removing fuel" << endl;
+//                 double weightDiff = weightTot - 2950;
+//                 weightTot -= weightDiff;
+//                 cout << "Weight Diff: " << to_string(weightDiff) << "Weight Tot: " << to_string(weightTot) << endl; 
+//                 fuel -= weightDiff;
+//                 cout << "Fuel: " << to_string(fuel) << endl;
+//                 COG = totMom(frontseats, momFrontSeatsL, backseats, momRearSeatsL, fuel, momFuelL, fulGal, bagWeight, momBagL, momWeightEL);
+//                 cout << "CG is now at " << to_string(COG) << " from datum" << endl;
+//                 this_thread::sleep_for(chrono::seconds(2));
+//             }
+
+//             if (COG > 84.7) {
+//                 cout << "CG too forward, adjusting fuel" << endl;
+//                 fuel = (84.7 * weightTot - (frontseats * momFrontSeatsL + backseats * momRearSeatsL + bagWeight * momBagL + momWeightEL)) / (momFuelL * fulGal);
+//                 cout << "Fuel is now " << to_string(fuel) << endl;
+//                 this_thread::sleep_for(chrono::seconds(2));
+//                 COG = totMom(frontseats, momFrontSeatsL, backseats, momRearSeatsL, fuel, momFuelL, fulGal, bagWeight, momBagL, momWeightEL); // Update COG
+//             } else if (COG < 82.1) {
+//                 cout << "CG too rearward, adjusting fuel" << endl;
+//                 fuel = (82.1 * weightTot - (frontseats * momFrontSeatsL + backseats * momRearSeatsL + bagWeight * momBagL + momWeightEL)) / (momFuelL * fulGal);
+//                 cout << "Fuel is now " << to_string(fuel) << endl;
+//                 this_thread::sleep_for(chrono::seconds(2));
+//                 COG = totMom(frontseats, momFrontSeatsL, backseats, momRearSeatsL, fuel, momFuelL, fulGal, bagWeight, momBagL, momWeightEL); // Update COG
+//             }
+
+//             if (weightTot < 2950 && (COG < 84.7 && COG > 82.1)) {
+//                 cout << "The plane is allowed" << endl;
+//                 this_thread::sleep_for(chrono::seconds(2));
+//                 allowed = true;
+//             } else {
+//                 cout << "This plane is not allowed" << endl;
+//                 this_thread::sleep_for(chrono::seconds(2));
+//             }
+//         }
+//         return allowed;
+//     }
+// }

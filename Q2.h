@@ -1,6 +1,3 @@
-//
-// Created by Achyutan Srinivasan on 10/20/24.
-//
 
 #ifndef HOMEWORK1_Q2_H
 #define HOMEWORK1_Q2_H

@@ -1,6 +1,3 @@
-//
-// Created by Achyutan Srinivasan on 10/20/24.
-//
 
 #include "Q2.h"
 #include <iostream>
