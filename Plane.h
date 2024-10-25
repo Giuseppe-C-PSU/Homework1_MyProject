@@ -17,7 +17,7 @@ private:
 	std::map<std::pair<std::string, std::string>, double>flightdistances; // Container for flight distances from part 2
 public:
 	//Constructor
-	Plane(const std::string& from, const std::string& to);
+	Plane(const std::string& From, const std::string& To);
 	//Deconstructor
 	~Plane();
 

@@ -7,9 +7,24 @@
 #include <string>
 #include <set>
 #include "q1.h"
+#include "Q7.h"
+#include "Q8.h"
 
 
 int main() {
+// initializing pilots
+    Pilot pilotOne("Alpha");
+    Pilot pilotTwo("Bravo");
+    Pilot* currentPilot = &pilotOne;
+    Pilot* nextPilot = &pilotTwo;
+
+    auto modernPilotOne = std::make_unique<ModernPilot>("Sigma");
+    auto modernPilotTwo = std::make_unique<ModernPilot>("Beta");
+    auto currentModernPilot = std::move(modernPilotOne);
+    auto nextModernPilot = std::move(modernPilotTwo);
+
+
+
     {// Question 1
         int allowed = question1();
         if (allowed){
@@ -92,7 +107,19 @@ int main() {
         plane.operate(dt);
         std::cout << "Time: " << i*dt << " Seconds || " << "Position: " << plane.getPos() << " Miles " << std::endl;
 
+        if (plane.isatSCE()) {
+            switchPilots(currentPilot, nextPilot);
+            std::swap(currentPilot, nextPilot);
+
+            switchModernPilots(currentModernPilot, nextModernPilot);
+            std::swap(currentModernPilot, nextModernPilot);
+
+        }
+
+
     }
+
+
 
     return 0;
 }
