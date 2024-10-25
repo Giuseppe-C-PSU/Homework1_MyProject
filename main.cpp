@@ -3,10 +3,9 @@
 // HW1.cpp
 #include "Q2.h"
 #include <iostream>
-
 #include "Plane.h"
 #include <string>
-
+#include <set>
 #include "q1.h"
 
 
@@ -20,10 +19,6 @@ int main() {
         }
 
     }
-    
-    
-    
-
 
     // Initialize the flight distances
     FlightDistances();
@@ -35,11 +30,43 @@ int main() {
     std::string From;
     std::string To;
 
-    // Get user input for Departure and Arrival
-    std::cout << "Enter the departure city code: ";
-    std::cin >> From;
-    std::cout << "Enter the arrival city code: ";
-    std::cin >> To;
+    // Set of valid city codes
+    std::set<std::string> validCodes = {"SCE", "PHL", "ORD", "EWR"};
+
+
+    // Maximum number of attempts
+    const int maxAttempts = 5;
+    int j = 0;
+
+    // Get user input for Departure
+    do {
+        std::cout << "Enter the departure city code: ";
+        std::cin >> From;
+        if (validCodes.find(From) == validCodes.end()) {
+            std::cout << "Invalid city code. Please try again.\nSupported City Codes are SCE, PHL, ORD, and EWR.\n";
+            j++;
+        }
+        if (j >= maxAttempts) {
+            std::cout << "Too many invalid attempts. Program will terminate.\n";
+            return 1; // Terminate the program
+        }
+    } while (validCodes.find(From) == validCodes.end());
+
+    j = 0; // Reset attempts for the next input
+
+    // Get user input for Arrival
+    do {
+        std::cout << "Enter the arrival city code: ";
+        std::cin >> To;
+        if (validCodes.find(To) == validCodes.end()) {
+            std::cout << "Invalid city code. Please try again.\nSupported City Codes are SCE, PHL, ORD, and EWR.\n";
+            j++;
+        }
+        if (j >= maxAttempts) {
+            std::cout << "Too many invalid attempts. Program will terminate.\n";
+            return 1; // Terminate the program
+        }
+    } while (validCodes.find(To) == validCodes.end());
 
     // Access the flight distance between the cities
     int distance = getFlightDistance(To, From);
